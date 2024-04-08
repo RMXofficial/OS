@@ -55,5 +55,6 @@ public class Main {
         System.out.println("A max sum in a line is: " + sharedMatrix.getMaxSum());
         System.out.println("Number of target occurrences: " + sharedMatrix.getCounter());
         System.out.println("Biggest number in the matrix is: " + sharedMatrix.getBiggestNumber());
+        System.out.println();
     }
 }
