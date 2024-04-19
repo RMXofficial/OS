@@ -26,6 +26,13 @@ public class SharedArray {
     public int getMaxOccurances() {
         return maxOccurances;
     }
+    public int[] getArray() {
+        return array;
+    }
+
+    public int getSize() {
+        return size;
+    }
     public void updateOccurances(int occurances){
         try {
             semaphore.acquire();
@@ -36,13 +43,5 @@ public class SharedArray {
             throw new RuntimeException(e);
         }
         semaphore.release();
-    }
-
-    public int[] getArray() {
-        return array;
-    }
-
-    public int getSize() {
-        return size;
     }
 }
