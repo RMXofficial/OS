@@ -1,0 +1,97 @@
+
+version: '3.8'
+
+
+
+services:
+
+  udp-server:
+
+    build:
+
+      context: .
+
+      dockerfile: Dockerfile-udp-server
+
+    networks:
+
+      - udp-network
+
+    ports:
+
+      - "9876:9876/udp"
+
+
+
+  udp-client:
+
+    build:
+
+      context: .
+
+      dockerfile: Dockerfile-udp-client
+
+    networks:
+
+      - udp-network
+
+    depends_on:
+
+      - udp-server
+
+    deploy:
+
+      replicas: 5  # Креирање на 5 инстанци од UDP клиентот
+
+
+
+  tcp-server:
+
+    build:
+
+      context: .
+
+      dockerfile: Dockerfile-tcp-server
+
+    networks:
+
+      - tcp-network
+
+    ports:
+
+      - "12345:12345"
+
+
+
+  tcp-client:
+
+    build:
+
+      context: .
+
+      dockerfile: Dockerfile-tcp-client
+
+    networks:
+
+      - tcp-network
+
+    depends_on:
+
+      - tcp-server
+
+    deploy:
+
+      replicas: 5  # Креирање на 5 инстанци од TCP клиентот
+
+
+
+networks:
+
+  udp-network:
+
+    driver: bridge
+
+  tcp-network:
+
+    driver: bridge
+

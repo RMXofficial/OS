@@ -1,0 +1,5 @@
+FROM openjdk:latest
+COPY TCPClient.java /app/TCPClient.java
+WORKDIR /app
+RUN javac TCPClient.java
+CMD ["java","TCPClient"]

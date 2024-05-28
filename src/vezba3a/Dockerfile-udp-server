@@ -1,0 +1,6 @@
+FROM openjdk:latest
+WORKDIR /app
+COPY . .
+RUN javac UDPServer.java
+EXPOSE 8081
+CMD ["java","UDPServer"]

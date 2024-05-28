@@ -1,0 +1,5 @@
+FROM openjdk:latest
+COPY TCPServer.java /app/TCPServer.java
+WORKDIR /app
+RUN javac TCPServer.java
+CMD ["java","TCPServer"]

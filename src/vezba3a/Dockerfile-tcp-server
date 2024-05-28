@@ -1,0 +1,6 @@
+FROM openjdk:latest
+WORKDIR /app
+COPY . .
+RUN javac TCPServer.java
+EXPOSE 8080
+CMD ["java","TCPServer"]

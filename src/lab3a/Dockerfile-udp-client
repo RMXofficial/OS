@@ -1,0 +1,5 @@
+FROM openjdk:latest
+COPY UDPClient.java /app/UDPClient.java
+WORKDIR /app
+RUN javac UDPClient.java
+CMD ["java","UDPClient"]
