@@ -1,0 +1,6 @@
+FROM openjdk:latest
+WORKDIR /app
+COPY Server.java .
+EXPOSE 5000
+RUN javac Server.java
+CMD ["java", "Server"]

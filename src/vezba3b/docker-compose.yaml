@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile-server
+    ports:
+      - "5000:5000"
+    networks:
+      - my-private-network
+    deploy:
+      replicas: 1
+
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile-client
+    depends_on:
+      - server
+    networks:
+      - my-private-network
+    deploy:
+      replicas: 5
+
+networks:
+  my-private-network:
+    driver: bridge

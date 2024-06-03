@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  city-noisepollution:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - my-private-network
+    ports:
+      - "8080/8080/tcp"
+    volumes:
+      - city-noisepollution:/app/data
+    deploy:
+      replicas: 1
+
+  city-noisemonitoring:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - my-private-network
+    volumes:
+      - city-noisemonitoring:/app/data
+    environment:
+      - LOW_VOLUME=40
+      - MED_VOLUME=60
+      - HIGH_VOLUME=80
+    depends_on:
+      - city-noisepollution
+    deploy:
+      replicas: 5
+
+
+volumes:
+  city-noisepollution:
+  city-noisemonitoring:
+
+networks:
+  my-private-network:
+    driver: bridge
